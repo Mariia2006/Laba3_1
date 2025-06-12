@@ -20,25 +20,35 @@
                 <TextBox x:Name="RemoveMultiplesTextBox" Width="80" Margin="0,0,5,0"/>
                 <Button Content="Вилучити кратні" Click="RemoveMultiplesButton_Click" Margin="15,0,0,0"/>
             </StackPanel>
-            <Button Name="GenerateButton" Content="Більше кнопок!" Margin="0,15,0,0" Width="150" Click="GenerateButton_Click"/>
-            <Button Name="ClearButton" Content="Видалити" Width="150" Margin="0,15,0,0" Click="ClearButton_Click"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                <StackPanel Orientation="Vertical">
+                    <Button Name="GenerateButton" Content="Більше кнопок!" Width="150" Click="GenerateButton_Click"/>
+                    <Button Name="ClearButton" Content="Видалити" Width="150" Margin="0,15,0,0" Click="ClearButton_Click"/>
+                </StackPanel>
+                
+                <StackPanel Orientation="Vertical" Margin="30,0,0,0">
+                    <TextBlock Text="Вилучити усі, окрім простих" Margin="0,0,0,5"/>
+                    <Button Content="Вилучити не прості" Click="RemoveNonPrimesButton_Click" Width="150" Margin="0,5,0,0"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-    <ItemsControl Name="ButtonsItemsControl" ItemsSource="{Binding ButtonNumbers}">
-        <ItemsControl.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel IsItemsHost="True"/>
-            </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <Button Content="{Binding}" Width="70" Height="30" Margin="5"
+            <ItemsControl Name="ButtonsItemsControl" ItemsSource="{Binding ButtonNumbers}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding}" Width="70" Height="30" Margin="5"
                         Command="{Binding DataContext.ButtonClickCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                         CommandParameter="{Binding}" />
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
-</ScrollViewer>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </DockPanel>
 </Window>

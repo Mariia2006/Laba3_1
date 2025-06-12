@@ -51,6 +51,16 @@ namespace Laba3
             }
         }
 
+        private void RemoveNonPrimesButton_Click(object sender, RoutedEventArgs e)
+        {
+            var itemsToRemove = _viewModel.ButtonNumbers
+                .Where(x => !_viewModel.IsPrime(x))
+                .ToList();
+
+            foreach (var item in itemsToRemove)
+                _viewModel.ButtonNumbers.Remove(item);
+        }
+
         private void RemoveMultiplesButton_Click(object sender, RoutedEventArgs e)
         {
             if (!int.TryParse(RemoveMultiplesTextBox.Text, out int multiple) || multiple == 0)
