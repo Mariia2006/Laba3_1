@@ -1,0 +1,44 @@
+﻿<Window x:Class="Laba3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Laba3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="850">
+    <DockPanel Margin="10">
+        
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" Margin="0,0,0,10">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <Label Content="Від:" Width="50"/>
+                <TextBox Name="FromTextBox" Width="100" Margin="0,0,10,0"/>
+                <Label Content="До:" Width="50"/>
+                <TextBox Name="ToTextBox" Width="100" Margin="0,0,10,0"/>
+                <Label Content="З кроком:" Width="70"/>
+                <TextBox Name="StepTextBox" Width="60"/>
+                <TextBlock Text="Вилучити всі, кратні:" VerticalAlignment="Center" Margin="15,0,10,0"/>
+                <TextBox x:Name="RemoveMultiplesTextBox" Width="80" Margin="0,0,5,0"/>
+                <Button Content="Вилучити кратні" Click="RemoveMultiplesButton_Click" Margin="15,0,0,0"/>
+            </StackPanel>
+            <Button Name="GenerateButton" Content="Більше кнопок!" Margin="0,15,0,0" Width="150" Click="GenerateButton_Click"/>
+            <Button Name="ClearButton" Content="Видалити" Width="150" Margin="0,15,0,0" Click="ClearButton_Click"/>
+        </StackPanel>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ItemsControl Name="ButtonsItemsControl" ItemsSource="{Binding ButtonNumbers}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel IsItemsHost="True"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Button Content="{Binding}" Width="70" Height="30" Margin="5"
+                        Command="{Binding DataContext.ButtonClickCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                        CommandParameter="{Binding}" />
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</ScrollViewer>
+    </DockPanel>
+</Window>
